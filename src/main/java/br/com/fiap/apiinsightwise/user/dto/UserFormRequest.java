@@ -1,6 +1,6 @@
-package br.com.fiap.apiheatwise.user.dto;
+package br.com.fiap.apiinsightwise.user.dto;
 
-import br.com.fiap.apiheatwise.user.User;
+import br.com.fiap.apiinsightwise.user.User;
 
 import java.time.LocalDateTime;
 

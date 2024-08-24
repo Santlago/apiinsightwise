@@ -1,4 +1,4 @@
-package br.com.fiap.apiheatwise.user;
+package br.com.fiap.apiinsightwise.user;
 
 import org.springframework.stereotype.Service;
 

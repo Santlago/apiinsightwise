@@ -1,4 +1,4 @@
-package br.com.fiap.apiheatwise.user;
+package br.com.fiap.apiinsightwise.user;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "tb_heatwise_users")
+@Table(name = "tb_insightwise_users")
 @Data
 @Builder
 @AllArgsConstructor

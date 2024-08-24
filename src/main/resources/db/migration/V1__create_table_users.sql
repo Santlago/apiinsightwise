@@ -1,4 +1,4 @@
-create table if not exists tb_heatwise_users (
+create table if not exists tb_insightwise_users (
     id bigint NOT NULL auto_increment,
     name varchar(255),
     email varchar(255),

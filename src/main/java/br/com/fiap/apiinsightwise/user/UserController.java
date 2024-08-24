@@ -1,7 +1,7 @@
-package br.com.fiap.apiheatwise.user;
+package br.com.fiap.apiinsightwise.user;
 
-import br.com.fiap.apiheatwise.user.dto.UserFormRequest;
-import br.com.fiap.apiheatwise.user.dto.UserResponse;
+import br.com.fiap.apiinsightwise.user.dto.UserFormRequest;
+import br.com.fiap.apiinsightwise.user.dto.UserResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;

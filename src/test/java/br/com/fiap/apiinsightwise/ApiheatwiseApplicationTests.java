@@ -1,4 +1,4 @@
-package br.com.fiap.apiheatwise;
+package br.com.fiap.apiinsightwise;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

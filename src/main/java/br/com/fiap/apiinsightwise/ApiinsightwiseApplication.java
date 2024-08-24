@@ -1,4 +1,4 @@
-package br.com.fiap.apiheatwise;
+package br.com.fiap.apiinsightwise;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @SpringBootApplication
-public class ApiheatwiseApplication {
+public class ApiinsightwiseApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ApiheatwiseApplication.class, args);
+        SpringApplication.run(ApiinsightwiseApplication.class, args);
     }
 
     @RequestMapping
