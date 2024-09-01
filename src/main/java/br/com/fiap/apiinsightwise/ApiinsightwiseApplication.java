@@ -17,7 +17,7 @@ public class ApiinsightwiseApplication {
     @RequestMapping
     @ResponseBody
     public String home(){
-        return "HeatWise";
+        return "InsightWise";
     }
 
 }
