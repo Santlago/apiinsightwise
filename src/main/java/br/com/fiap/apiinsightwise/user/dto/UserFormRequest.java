@@ -8,8 +8,7 @@ public record UserFormRequest(
         String name,
         String email,
         String password,
-        String cnpj,
-        int planId
+        String cnpj
 ) {
     public User toModel() {
         return User.builder()
@@ -17,7 +16,6 @@ public record UserFormRequest(
                 .email(email)
                 .password(password)
                 .cnpj(cnpj)
-                .planId(planId)
                 .createdAt(LocalDateTime.now())
                 .updatedAt(LocalDateTime.now())
                 .build();
