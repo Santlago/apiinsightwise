@@ -6,6 +6,7 @@ import br.com.fiap.apiinsightwise.user.dto.UserResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
@@ -42,5 +43,11 @@ public class UserController {
     public UserProfileResponse getProfile(){
         var email = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
         return userService.getProfile(email);
+    }
+
+    @PostMapping("avatar")
+    public void uploadAvatar(@RequestBody MultipartFile file){
+        var email = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        userService.updateAvatar(email, file);
     }
 }

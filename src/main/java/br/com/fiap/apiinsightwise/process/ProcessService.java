@@ -15,11 +15,15 @@ public class ProcessService {
             this.processRepository = processRepository;
         }
 
-        public Page<Process> findAll(Pageable pageable) {
-            return processRepository.findAll(pageable);
-        }
+//        public Page<Process> findAll(Pageable pageable) {
+//            return processRepository.findAll(pageable);
+//        }
 
         public Process create(Process process) {
             return processRepository.save(process);
+        }
+
+        public Page<Process> findAllByUserEmail(String email, Pageable pageable) {
+            return processRepository.findAllByUserEmail(email, pageable);
         }
 }
