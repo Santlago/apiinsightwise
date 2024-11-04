@@ -23,9 +23,14 @@ public class ProcessService {
     }
 
     public Process create(Process process) {
-        // Send the process description to the AI and get the modified response
-        String modifiedDescription = sentToAi(process.getProcess());
-        process.setProcess(modifiedDescription);
+        try {
+            // Send the process description to the AI and get the modified response
+            String modifiedDescription = sentToAi(process.getProcess());
+            process.setProcess(modifiedDescription);
+        } catch (Exception e) {
+            // Log the error and save the original process description
+            System.err.println("Error generating process with AI: " + e.getMessage());
+        }
         return processRepository.save(process);
     }
 
