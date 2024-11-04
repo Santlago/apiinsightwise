@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: epictask
+      POSTGRES_USER: epictask
+      POSTGRES_PASSWORD: epictask
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: epictask
+      RABBITMQ_DEFAULT_PASS: epictask
+
+volumes:
+  postgres_data:
