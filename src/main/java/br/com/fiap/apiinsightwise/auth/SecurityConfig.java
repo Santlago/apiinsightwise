@@ -16,12 +16,16 @@ public class SecurityConfig {
     public SecurityFilterChain config(HttpSecurity http, AuthorizationFilter authorizationFilter) throws Exception {
         http.csrf(csrf -> csrf.disable());
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers(HttpMethod.POST, "/login").permitAll()
-                .requestMatchers(HttpMethod.POST, "/users").permitAll()
-                .requestMatchers(HttpMethod.GET, "/users").permitAll()
-                .requestMatchers(HttpMethod.GET, "/avatars/**").permitAll()
-                .anyRequest().authenticated()
-        );
+                        .requestMatchers(HttpMethod.POST, "/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/users").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/users").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/avatars/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/auth/google").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .oauth2Login(login -> login.defaultSuccessUrl("/login/oauth2/code/google", true).permitAll())
+                .logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login"));
+
         http.addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
