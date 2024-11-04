@@ -2,10 +2,7 @@ package br.com.fiap.apiinsightwise.process;
 
 import br.com.fiap.apiinsightwise.user.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -21,6 +18,8 @@ public class Process {
     Long id;
 
     String name;
+    @Getter
+            @Setter
     String process;
     LocalDateTime createdAt;
 

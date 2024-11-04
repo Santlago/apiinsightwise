@@ -1,29 +1,43 @@
 package br.com.fiap.apiinsightwise.process;
 
+import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class ProcessService {
 
-        private final ProcessRepository processRepository;
+    private final ProcessRepository processRepository;
+    private final ChatClient chatClient;
 
-        public ProcessService(ProcessRepository processRepository) {
-            this.processRepository = processRepository;
-        }
+    public ProcessService(ProcessRepository processRepository, ChatClient.Builder chatClientBuilder) {
+        this.processRepository = processRepository;
+        this.chatClient = chatClientBuilder
+                .defaultSystem("""
+                        Você vai receber desrições de processos (i.e. processo de cadastro de usuário,
+                        processo de modificação de dados de usuário, etc) e deverá melhorar essas descrições
+                        escrevendo-as de forma mais clara e objetiva e não podendo passar de 255 caracteres.
+                        """)
+                .build();
+    }
 
-//        public Page<Process> findAll(Pageable pageable) {
-//            return processRepository.findAll(pageable);
-//        }
+    public Process create(Process process) {
+        // Send the process description to the AI and get the modified response
+        String modifiedDescription = sentToAi(process.getProcess());
+        process.setProcess(modifiedDescription);
+        return processRepository.save(process);
+    }
 
-        public Process create(Process process) {
-            return processRepository.save(process);
-        }
+    public Page<Process> findAllByUserEmail(String email, Pageable pageable) {
+        return processRepository.findAllByUserEmail(email, pageable);
+    }
 
-        public Page<Process> findAllByUserEmail(String email, Pageable pageable) {
-            return processRepository.findAllByUserEmail(email, pageable);
-        }
+    public String sentToAi(String message) {
+        return chatClient
+                .prompt()
+                .user(message)
+                .call()
+                .content();
+    }
 }
